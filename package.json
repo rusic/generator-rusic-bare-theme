@@ -1,14 +1,14 @@
 {
   "name": "generator-rusic-bare-theme",
   "version": "0.0.0",
-  "description": "Yeoman generator",
+  "description": "Generates a bare Rusic theme",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "nouveller/generator-rusic-bare-theme",
+  "repository": "rusic/generator-rusic-bare-theme",
   "author": {
     "name": "Benjamin Reid",
     "email": "",
-    "url": "https://github.com/nouveller"
+    "url": "https://github.com/rusic"
   },
   "scripts": {
     "test": "mocha"
@@ -17,7 +17,8 @@
     "generators"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "rusic"
   ],
   "dependencies": {
     "yeoman-generator": "^0.19.0",
