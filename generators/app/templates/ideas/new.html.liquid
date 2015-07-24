@@ -1,0 +1,13 @@
+{% if notice %}
+  {{ notice }}
+{% endif %}
+
+<form action="{{ space.permalink }}/ideas" method="post">
+  <input type="text" name="idea[title]" placeholder="Title">
+  <input type="text" name="idea[content]" placeholder="Content">
+  {% if space.guest_ideas %}
+  <input type="email" name="identity[email]" placeholder="Email">
+  {% endif %}
+  <input type="text" name="idea[custom][color]" placeholder="Favourite color">
+  <button type="submit">Create idea</button>
+</form>
