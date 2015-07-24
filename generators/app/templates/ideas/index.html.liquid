@@ -1,0 +1,10 @@
+{% if space.ideas %}
+  <ul>
+    {% for idea in space.ideas %}
+      <li>
+        <h2><a href="{{ idea.permalink }}">{{ idea.title }}</a></h2>
+        {{ idea.content }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

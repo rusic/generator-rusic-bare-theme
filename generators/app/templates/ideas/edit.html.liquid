@@ -1,0 +1,15 @@
+{% if idea.errors %}
+  <ul>
+    {% for error in idea.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<form action="{{ idea.permalink }}" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="text" name="idea[title]" value="{{ idea.title }}" placeholder="Title">
+  <input type="text" name="idea[content]" value="{{ idea.content }}" placeholder="Content">
+  <input type="text" name="idea[custom][color]" value="{{ idea.custom.color }}" placeholder="Favourite color">
+  <button type="submit">Update idea</button>
+</form>

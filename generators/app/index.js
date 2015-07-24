@@ -7,51 +7,67 @@ module.exports = yeoman.generators.Base.extend({
   prompting: function () {
     var done = this.async();
 
-    // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the superior ' + chalk.red('RusicBareTheme') + ' generator!'
+      'Welcome to the superior ' + chalk.red('Rusic Bare Theme') + ' generator!'
     ));
 
     var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
+      type: 'input',
+      name: 'name',
+      message: 'What\'s your project name?'
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Description for your project'
+    }, {
+      type: 'input',
+      name: 'api_key',
+      message: 'What is your API key?'
+    }, {
+      type: 'input',
+      name: 'theme_id',
+      message: 'What is your theme\'s ID?'
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      // To access props later use this.props.someOption;
-
       done();
     }.bind(this));
   },
 
-  writing: {
-    app: function () {
-      this.fs.copy(
-        this.templatePath('_package.json'),
-        this.destinationPath('package.json')
-      );
-      this.fs.copy(
-        this.templatePath('_bower.json'),
-        this.destinationPath('bower.json')
-      );
-    },
+  writing: function() {
+    this.fs.copyTpl(
+      this.templatePath('.rusic.yml'),
+      this.destinationPath('.rusic.yml'),
+      {
+        api_key: this.props.api_key,
+        theme_id: this.props.theme_id
+      }
+    );
 
-    projectfiles: function () {
-      this.fs.copy(
-        this.templatePath('editorconfig'),
-        this.destinationPath('.editorconfig')
-      );
-      this.fs.copy(
-        this.templatePath('jshintrc'),
-        this.destinationPath('.jshintrc')
-      );
-    }
-  },
+    this.fs.copyTpl(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
+    );
 
-  install: function () {
-    this.installDependencies();
+    this.fs.copyTpl(
+      this.templatePath('layouts/subdomain.html.liquid'),
+      this.destinationPath('layouts/subdomain.html.liquid'),
+      {
+        name: this.props.name,
+        description: this.props.description
+      }
+    );
+
+    ['assets', 'snippets', 'ideas'].forEach(function(folder) {
+      this.fs.copy(
+        this.templatePath(folder),
+        this.destinationPath(folder)
+      );
+    }.bind(this));
   }
 });

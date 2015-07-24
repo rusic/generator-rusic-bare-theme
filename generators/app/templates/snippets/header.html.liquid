@@ -1,0 +1,12 @@
+<header>
+  {% if current_user or space.guest_ideas %}
+    <a href="{{ space.permalink }}">Index</a>
+    <a href="{{ space.permalink }}/ideas/new">New idea</a>
+    {% if current_user %}
+      <a href="/auth/signout">Logout</a>
+    {% endif %}
+  {% else %}
+    <a href="/auth/twitter">Login with Twitter</a>
+    <a href="/auth/facebook">Login with Facebook</a>
+  {% endif %}
+</header>

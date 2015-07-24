@@ -1,0 +1,7 @@
+{% if current_user.id == idea.participant.id %}
+  <a href="{{ idea.permalink }}/edit">Edit</a>
+{% endif %}
+
+<h2>{{ idea.title }}</h2>
+{{ idea.content }}
+{{ idea.custom.color }}
