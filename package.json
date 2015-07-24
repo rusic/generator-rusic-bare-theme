@@ -1,6 +1,6 @@
 {
   "name": "generator-rusic-bare-theme",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Generates a bare Rusic theme",
   "license": "MIT",
   "main": "app/index.js",
